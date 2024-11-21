@@ -1,7 +1,7 @@
 # Mathematical expression correctness checker
 Mathematical expression сorrectness checker based on Shunting yard algorithm and Reversed Polish notation. Supports `+`, `-`, `*`, `/` and `^` operations.
 
-The program returns statement whether the expression was correct and an approximate result of that expression.
+The program returns RPN of expression and statement whether the expression was correct and an approximate result of that expression.
 
 If user already put result of the expression (e.g. `2+2=5`) program will check if the result is correct, if it is not, then program will return approxiamte result of this expression.
 
