@@ -284,7 +284,7 @@ void showError(int pos)
 
 int main()
 {
-    int c,cycles;
+    int c;
     double time_spent = 0.0;
 
     bool haveResult=false;
@@ -318,85 +318,82 @@ int main()
 
     clock_t begin = clock();
 
-    for(c=0;c<cycles;c++)
+    errorCode=infixToRPN(infix,rpn,&errorPos);
+
+    switch(errorCode)
     {
-        errorCode=infixToRPN(infix,rpn,&errorPos);
+    case 1:
+        printf("\nError %d: First symbol is operator!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 2:
+        printf("\nError %d: Last symbol is operator!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 3:
+        printf("\nError %d: Multiple operators in a row!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 4:
+        printf("\nError %d: Number is followed by a bracket!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 5:
+        printf("\nError %d: Bracket is followed by a number!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 6:
+        printf("\nError %d: Left bracket is followed by a operator!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 7:
+        printf("\nError %d: Operator is followed by a right bracket!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 8:
+        printf("\nError %d: Right bracket followed by a left bracket!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 9:
+        printf("\nError %d: No opening bracket!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 10:
+        printf("\nError %d: No closing bracket!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 11:
+        printf("\nError %d: Nothing in brackets!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    case 12:
+        printf("\nError %d: Unknown symbol!\n\t%s\n",errorCode,infix);
+        showError(errorPos);
+        return 0;
+    default:
+        break;
+    }
 
-        switch(errorCode)
-        {
-        case 1:
-            printf("\nError %d: First symbol is operator!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 2:
-            printf("\nError %d: Last symbol is operator!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 3:
-            printf("\nError %d: Multiple operators in a row!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 4:
-            printf("\nError %d: Number is followed by a bracket!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 5:
-            printf("\nError %d: Bracket is followed by a number!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 6:
-            printf("\nError %d: Left bracket is followed by a operator!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 7:
-            printf("\nError %d: Operator is followed by a right bracket!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 8:
-            printf("\nError %d: Right bracket followed by a left bracket!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 9:
-            printf("\nError %d: No opening bracket!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 10:
-            printf("\nError %d: No closing bracket!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 11:
-            printf("\nError %d: Nothing in brackets!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        case 12:
-            printf("\nError %d: Unknown symbol!\n\t%s\n",errorCode,infix);
-            showError(errorPos);
-            return 0;
-        default:
-            break;
-        }
+    //printf("rpn:\n%s\n",rpn);
 
-        //printf("rpn:\n%s\n",rpn);
-
-        errorCode=rpnCalc(rpn,&rpnResult);
-        switch (errorCode)
-        {
-        case 13:
-            printf("Error! Dividing by zero!\n");
-            return 0;
-        case 14:
-            printf("Error! Zero in power of zero!\n");
-            return 0;
-        case 15:
-            return 0;
-        default:
-            break;
-        }
+    errorCode=rpnCalc(rpn,&rpnResult);
+    switch (errorCode)
+    {
+    case 13:
+        printf("Error! Dividing by zero!\n");
+        return 0;
+    case 14:
+        printf("Error! Zero in power of zero!\n");
+        return 0;
+    case 15:
+        return 0;
+    default:
+        break;
     }
 
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("\n%f secs\n\n\n",time_spent);
+    printf("\nDone in %f seconds\n\n\n",time_spent);
 
     if(haveResult)
     {
