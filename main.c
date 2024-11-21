@@ -312,10 +312,6 @@ int main()
     errorCode=findResult(infix,infixResult);
     if (errorCode==0) haveResult=true;
 
-    printf("Enter amount of cycles:\n");
-    scanf("%d",&cycles);
-    fflush(stdin);
-
     clock_t begin = clock();
 
     errorCode=infixToRPN(infix,rpn,&errorPos);
