@@ -290,9 +290,6 @@ int main()
     bool haveResult=false;
 
     int errorCode=0;
-    //1=first symb is operator (for * / ^);2=more than one operator in a row; 3=number then bracket; 4=bracket then number;
-    //5=bracket then operator(only for * / ^); 6=operator then bracket(all); 7=no opening bracket; 8=no closing bracket
-    //9=nothing in brackets; 10=zero division; 11=zero in power of zero
     int errorPos;
 
     char infix[MAXSIZE];
