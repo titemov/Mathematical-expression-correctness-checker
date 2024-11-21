@@ -367,7 +367,7 @@ int main()
         break;
     }
 
-    //printf("rpn:\n%s\n",rpn);
+    printf("RPN:\n%s\n",rpn);
 
     errorCode=rpnCalc(rpn,&rpnResult);
     switch (errorCode)
@@ -386,7 +386,7 @@ int main()
 
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("\nDone in %f seconds\n\n\n",time_spent);
+    //printf("\nDone in %f seconds\n\n\n",time_spent);
 
     if(haveResult)
     {
